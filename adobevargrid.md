@@ -8,7 +8,9 @@
 
 ## Report Suite: myfakereportsuite
 <hr>
+
 ### Props
+
 | Number | Name | Description |
 |----------|----------|----------|
 |prop1 | Pagename | I am the pagename of a given page
