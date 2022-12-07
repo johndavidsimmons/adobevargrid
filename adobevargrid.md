@@ -1,7 +1,7 @@
 
 # Adobe Analytics Events and Dimensions
 <br>
-*Last Updated: 12/07/22 - 08:46:56*
+*Last Updated: 12/07/22 - 10:00:01*
 <div id="variablesearch">
     <input name="search" placeholder="Search" value="">
 </div>
@@ -41,3 +41,28 @@
 |event3|Search|Fires when a user performs a search|
 |event4|CTA Click|Counts when a user clicks on a CTA|
 |event103|Order shipped|Counts when a users order is shipped, uploaded offline|
+
+
+<style>
+    tr:nth-child(even) {
+        background-color:#ECECEC !important;
+    }
+</style>
+
+<script>
+    document
+      .querySelector('#variablesearch input')
+      .addEventListener('keyup', (event) => {
+        let query = event.target.value.toLowerCase();
+        let tds = Array.from(document.querySelectorAll('td'));
+        let filtered_tds = tds.filter((td) =>
+          td.innerText.toLowerCase().includes(query)
+        );
+        tds.forEach(
+          (element) => (element.parentElement.style.display = 'none')
+        );
+        filtered_tds.forEach((element) => {
+          element.parentElement.style.display = '';
+        });
+      });
+</script>

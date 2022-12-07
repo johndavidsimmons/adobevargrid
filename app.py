@@ -122,7 +122,8 @@ output = f"""
 </div>
 
 ## Report Suite: {rsid}
-<hr>"""
+<hr>
+"""
 
 output += """
 ### Props
@@ -171,5 +172,38 @@ for e in list(events):
     name = e.get('name')
     output += f"\n|{id}|{name}|{description}|"
 
+# extra newlines just for good measure
+output += "\n"
+output += "\n"
+
+# CSS
+output += """
+<style>
+    tr:nth-child(even) {
+        background-color:#ECECEC !important;
+    }
+</style>
+"""
+
+# Javascript
+output += """
+<script>
+    document
+      .querySelector('#variablesearch input')
+      .addEventListener('keyup', (event) => {
+        let query = event.target.value.toLowerCase();
+        let tds = Array.from(document.querySelectorAll('td'));
+        let filtered_tds = tds.filter((td) =>
+          td.innerText.toLowerCase().includes(query)
+        );
+        tds.forEach(
+          (element) => (element.parentElement.style.display = 'none')
+        );
+        filtered_tds.forEach((element) => {
+          element.parentElement.style.display = '';
+        });
+      });
+</script>
+"""
 with open('adobevargrid.md', 'w') as f:
     f.write(output)
